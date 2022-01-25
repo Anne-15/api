@@ -1,25 +1,11 @@
 import express from "express";
-import { Client } from "../entity/Client";
+import { getBusiness, getClients, getDelivery, getRetail } from "../controllers/getUsers";
+
 const router = express.Router();
 
-router.post('/api/client', async (req, res) => {
-    const{
-        firstName,
-        lastName,
-        phoneNumber,
-        email
-    } = req.body;
+router.post('/api/client', getClients);
+router.post('/api/retailer', getRetail);
+router.post('/api/business', getBusiness);
+router.post('/api/delivery', getDelivery);
 
-    const client = Client.create({
-        first_name: firstName,
-        last_name: lastName,
-        phone_number: phoneNumber,
-        email
-    })
-
-    await client.save()
-
-    return res.json(client);
-});
-
-export {router as createClient}
+export {router as createUser}

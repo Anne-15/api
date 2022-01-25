@@ -1,8 +1,7 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express = require("express");
-import { createClient } from "./routes/getClient";
-import { createRetail } from "./routes/getRetailer";
+import { createUser } from "./routes/getClient";
 
 const connection = createConnection();
 export default connection;
@@ -13,5 +12,4 @@ const app = express();
 
 app.use(express.json());
 
-app.use(createClient);
-app.use(createRetail);
+app.use(createUser);

@@ -10,7 +10,7 @@ export class Business extends BaseEntity {
     id: number;
 
     @Column()
-    businessName: string;
+    business_name: string;
 
     @Column()
     description: string;

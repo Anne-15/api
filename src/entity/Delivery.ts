@@ -6,10 +6,10 @@ export class Delivery extends BaseEntity{
     @PrimaryGeneratedColumn()
     id: number;
     @Column()
-    firstName: string;
+    first_name: string;
 
     @Column()
-    lastName: string;
+    last_name: string;
     
     @Column()
     phone_number: number;
