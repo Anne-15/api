@@ -16,7 +16,8 @@ app.use(createUser);
 
 //routes
 app.get('/', (req, res) => {
-    res.send("My task manager app");
+    console.log('[TEST]!');
+    res.send("Automated package delivery app!!");
 })
 
 //server

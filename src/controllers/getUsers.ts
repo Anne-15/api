@@ -4,7 +4,7 @@ const { Delivery } = require ("../entity/Delivery");
 const { Business } = require ("../entity/Business");
 const { Product } = require ("../entity/Product");
 
-const getClients = async (req, res) => {
+export const getClients = async (req, res) => {
     const{
         firstName,
         lastName,
@@ -20,7 +20,6 @@ const getClients = async (req, res) => {
     await client.save()
     return res.json(client);
 }
-// export default getClients;
 
 export const getRetail = async (req, res) => {
     const{
