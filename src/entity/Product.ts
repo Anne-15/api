@@ -9,7 +9,7 @@ export class Product extends BaseEntity{
     id: number;
 
     @Column()
-    productName: string;
+    product_name: string;
 
     @Column()
     description: string;
@@ -17,13 +17,6 @@ export class Product extends BaseEntity{
     @Column({
         type: "numeric"
     })
-    productPrice: number
+    product_price: number
 
-    @ManyToOne(type => Business, business => business.product)
-    business: Business;
-
-    // @JoinColumn({
-    //     name: "business_id"
-    // })
-    // business: Business
 }

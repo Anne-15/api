@@ -8,14 +8,6 @@ export class Orders extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
-
-    @OneToOne(() => Delivery)
-    @JoinColumn()
-    delivery: Delivery
-
-    @OneToOne(() => Client)
-    @JoinColumn()
-    client: Client
     
 
 }

@@ -1,10 +1,11 @@
-import {Entity, BaseEntity, Column, PrimaryGeneratedColumn} from "typeorm"
+const {Entity, BaseEntity, Column, PrimaryGeneratedColumn} = require ("typeorm");
 
 @Entity('client')
 export class Client extends BaseEntity{
     
     @PrimaryGeneratedColumn()
     id: number
+    
     @Column()
     first_name: string;
 

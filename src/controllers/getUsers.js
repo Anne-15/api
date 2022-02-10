@@ -1,8 +1,10 @@
-import { Client } from "../entity/Client";
-import { Delivery } from "../entity/Delivery";
-import { Retailer } from "../entity/Retailer";
+const { Client } = require ("../entity/Client");
+const { Retailer } = require ("../entity/Retailer");
+const { Delivery } = require ("../entity/Delivery");
+const { Business } = require ("../entity/Business");
+const { Product } = require ("../entity/Product");
 
-export const getClients = async (req, res) => {
+const getClients = async (req, res) => {
     const{
         firstName,
         lastName,
@@ -18,6 +20,7 @@ export const getClients = async (req, res) => {
     await client.save()
     return res.json(client);
 }
+// export default getClients;
 
 export const getRetail = async (req, res) => {
     const{
@@ -55,4 +58,21 @@ export const getDelivery = async (req, res) => {
     })
     await deliver.save()
     return res.json(deliver)
+}
+
+export const getProducts = async (req, res) => {
+    const { businessId } = req.params
+    const { productName, description, productPrice } = req.body
+    const business = await Business.findOne(parseInt(businessId));
+    if(!business){
+        return res.json({
+            msg: "Business not found"
+        })
+    }
+    const product = Product.save({
+        product_name: productName,
+        description,
+        product_price: productPrice
+        // business_id: businessId
+    })
 }

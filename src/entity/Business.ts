@@ -14,13 +14,6 @@ export class Business extends BaseEntity {
 
     @Column()
     description: string;
-
-    @OneToMany(type => Product, product => product.business)
-    product: Product[]
-
-    @OneToOne(() => Retailer)
-    @JoinColumn()
-    retailer: Retailer;
     
 
 }
