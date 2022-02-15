@@ -4,7 +4,7 @@ import dbconnection from "..";
 import { Client } from "../entity/Client";
 
 export const logIn = (req, res) => {
-    const {email, password} = req.body;
+    const { email, password }: { email:string; password: string } = req.body;
     console.log(email, password);
     if(!(email && password)){
         res.status(400).send({Error: "Incomplete details"});
@@ -39,6 +39,6 @@ export const logIn = (req, res) => {
     })
     .catch((error) => {
         console.log(error);
-        res.status(400).send({Error: "Correction Error"})
+        res.status(400).send({Error: "Correction"})
     })
 }

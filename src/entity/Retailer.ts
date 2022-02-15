@@ -7,13 +7,7 @@ export class Retailer extends BaseEntity {
     id: number;
 
     @Column()
-    first_name: string;
-
-    @Column()
-    last_name: string;
-
-    @Column()
-    phone_number: number;
+    full_name: string;
 
     @Column({
         unique: true
@@ -21,6 +15,15 @@ export class Retailer extends BaseEntity {
     email: string;
 
     @Column()
-    ig_handle: string;
+    password: string;
+
+    @Column()
+    phone_number: number;
+
+    @Column()
+    business_name: string;
+
+    @Column()
+    business_description: string;
 
 }
