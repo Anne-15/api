@@ -33,19 +33,19 @@ const getSignUp = async (req, res) => {
             client.phone_number = phone_number;
 
             await connection.manager.save(client).then((client) => {
-                response.status(200).send({"User added ": client.full_name})
+                res.status(200).send({"User added ": client.full_name})
             });
         })
         .catch((error) => {
         //duplicate email check
             if(error.code == "23505"){
-                response.status(400).send({"Error": "Account with that email already exists"});
+                res.status(400).send({"Error": "Account with that email already exists"});
             }else{
-                response.status(408).send({"Error": "error"});
+                res.status(408).send({"Error": "error"});
             }
     });
     }catch (error) {
-        response.status(400).send(error);
+        res.status(400).send(error);
 }
 ;}
 export default getSignUp
