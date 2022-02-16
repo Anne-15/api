@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt"
-import dbconnection from "..";
+import dbconnection from "../index";
 import { Client } from "../entity/Client";
 
 export const logIn = (req, res) => {

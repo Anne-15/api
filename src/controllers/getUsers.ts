@@ -1,11 +1,8 @@
 import { Client } from "../entity/Client";
 import jwt from "jsonwebtoken";
 import dbconnection from "../index";
-import express from "express";
-import { getRepository } from "typeorm";
 
-
-const getClients = async (req, res) => {
+const getUsers = async (req, res) => {
         //get users email
         const decodeToken = jwt.decode(req.header("x-access-token"),{
             complete: true,
@@ -21,12 +18,14 @@ const getClients = async (req, res) => {
                     id, 
                     full_name, 
                     email,
-                }: {id: number; full_name: string; email: string} = client[0];
+                    password,
+                    phone_number
+                }: {id: number; full_name: string; email: string; password: string; phone_number: number} = client[0];
                 
-                const logInUser = {id, full_name, email};
-                res.send(logInUser);
+                const userDetails = {id, full_name, email, password, phone_number};
+                res.send(userDetails);
         });
     });
 };
-export default getClients;
+export default getUsers;
 

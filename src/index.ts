@@ -4,8 +4,6 @@ import { createConnection } from "typeorm";
 import express = require("express");
 import { createUser } from "./routes/getClient";
 
-// import { createUser } from "./routes/getClient";
-
 const app = express();
 
 const dbconnection = createConnection("automated");
@@ -15,18 +13,16 @@ console.log("Connected!!");
 //middleware
 app.use(express.json());
 
-//error async
-const errorHandler = require('./middleware/error-handler');
-const notFound = require('./middleware/notFound');
-
 //routes
 app.get('/', (req, res) => {
-    // console.log('[TEST]!');
-    res.send("Automated package delivery app!! <a href = '/api/products'>My Products</a>");
+    res.send("Automated package delivery app!!");
 })
 
 app.use(createUser);
 
+//error async
+const errorHandler = require('./middleware/error-handler');
+const notFound = require('./middleware/notFound');
 //routes
 // app.use(errorHandler);
 // app.use(notFound);

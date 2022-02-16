@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { request } from "http";
 import { jwt } from "jsonwebtoken";
 
 export const authJwt = (
