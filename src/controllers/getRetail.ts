@@ -8,7 +8,9 @@ const getRetail = async (req, res) => {
             complete: true,
         });
 
-        dbconnection.then(async(connection) => {
+        try {
+            //db connection
+            dbconnection.then(async(connection) => {
             let userRepository = connection.getRepository(Retailer);
 
             await userRepository
@@ -34,7 +36,11 @@ const getRetail = async (req, res) => {
                 
                 const userDetails = {id, full_name, email, password, phone_number, business_name, business_description};
                 res.send(userDetails);
+            });
         });
-    });
+        } catch (error) {
+            res.status(400).send(error);
+        }
+    
 };
 export default getRetail;

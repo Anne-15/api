@@ -1,5 +1,6 @@
 import express from "express";
 import { logIn } from "../controllers/getLogin";
+import { logInRel } from "../controllers/getLoginRel";
 import getOrders from "../controllers/getOrders";
 import getRetail from "../controllers/getRetail";
 import getSignUp from "../controllers/getSignUp";
@@ -9,6 +10,7 @@ import { signUpRetail } from "../controllers/signUpRetail";
 const router = express.Router();
 
 router.post('/login', logIn);
+router.post('/retail/login', logInRel);
 router.post('/myOrders', getOrders);
 router.get('/users', getUsers);
 router.get('/retailers', getRetail);

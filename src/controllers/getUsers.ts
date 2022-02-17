@@ -1,6 +1,7 @@
 import { Client } from "../entity/Client";
 import jwt from "jsonwebtoken";
 import dbconnection from "../index";
+import { Profile } from "../entity/Profile";
 
 const getUsers = async (req, res) => {
         //get users email
@@ -19,10 +20,18 @@ const getUsers = async (req, res) => {
                     full_name, 
                     email,
                     password,
-                    phone_number
-                }: {id: number; full_name: string; email: string; password: string; phone_number: number} = client[0];
+                    phone_number,
+                    profile
+                }: {
+                    id: number; 
+                    full_name: string; 
+                    email: string; 
+                    password: string; 
+                    phone_number: number
+                    profile: Profile
+                } = client[0];
                 
-                const userDetails = {id, full_name, email, password, phone_number};
+                const userDetails = {id, full_name, email, password, phone_number, profile};
                 res.send(userDetails);
         });
     });
