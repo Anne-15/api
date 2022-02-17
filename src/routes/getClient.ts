@@ -13,7 +13,7 @@ router.post('/login', logIn);
 router.post('/retail/login', logInRel);
 router.post('/myOrders', getOrders);
 router.get('/users', getUsers);
-router.get('/retailers', getRetail);
+router.post('/retailers', getRetail);
 router.post('/signup', getSignUp);
 router.post('/retail/signup', signUpRetail);
 // router.post('/api/retailer', getRetail);

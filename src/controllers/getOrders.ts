@@ -1,23 +1,45 @@
+import dbconnection from "..";
+
 const { Orders } = require("../entity/Orders");
 
 const getOrders = async (req, res) => {
+    //get data from request body
     const {
         item,
         description,
-        product_price,
+        price,
         customer_name,
         customer_number
+    }: {
+        item: string;
+        description: string;
+        price: number;
+        customer_name: string;
+        customer_number: string;
     } = req.body
-    const orders = Orders.create({
-        item,
-        description,
-        product_price,
-        customer_name,
-        customer_number
-    })
-    await orders.save()
-    return res.json(orders);
-    // res.send({msg: "Getting your orders"});
+    try {
+        if(!(item && description && price && customer_name && customer_number)){
+            throw {Error: "Incomplete details"}
+        }
+        //adding an order to the database
+        dbconnection
+        .then(async(connection) => {
+            let order = new Orders();
+            order.item = item;
+            order.description = description;
+            order.price = price;
+            order.customer_name = customer_name;
+            order.customer_number = customer_number;
+
+            await connection.manager.save(order).then((order) => {
+                res.status(200).send({"Order added ": order.item});
+                console.log(order.item);
+            });
+        })
+    } catch (error) {
+        res.status(400).send(error)
+        console.log(error)
+    }
 
 }
 
