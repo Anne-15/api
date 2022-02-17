@@ -5,7 +5,7 @@ import express = require("express");
 import { createUser } from "./routes/getClient";
 
 const app = express();
-
+//connection to the database
 const dbconnection = createConnection("automated");
 export default dbconnection;
 console.log("Connected!!");
@@ -17,7 +17,6 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send("Automated package delivery app!!");
 })
-
 app.use(createUser);
 
 //error async

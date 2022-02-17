@@ -18,5 +18,7 @@ const getOrders = async (req, res) => {
     await orders.save()
     return res.json(orders);
     // res.send({msg: "Getting your orders"});
+
 }
+
 export default getOrders

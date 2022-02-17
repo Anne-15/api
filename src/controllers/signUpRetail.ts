@@ -1,25 +1,25 @@
-import bcrypt from "bcrypt";
-import { response } from "express";
 import dbconnection from "..";
-import { Client } from "../entity/Client";
 import { Retailer } from "../entity/Retailer";
 
-
-const getSignUp = async (req, res) => {
-    //get data from request body
+export const signUpRetail = (req, res) => {
+//get data from request body
     const {
         full_name,
         email,
         password,
-        phone_number
+        phone_number,
+        business_name,
+        business_description
     }: {
         full_name: string;
         email: string;
         password: string;
         phone_number: number;
+        business_name: string;
+        business_description: string;
     } = req.body;
     try {
-        if(!(full_name && email && password && phone_number)){
+        if(!(full_name && email && password && phone_number && business_name && business_description)){
             throw {Error: "Incomplete details"};
         }
         //strong password checking
@@ -27,14 +27,16 @@ const getSignUp = async (req, res) => {
         //adding a user
         dbconnection
         .then(async(connection) => {
-            let client = new Client();
-            client.full_name = full_name;
-            client.email = email;
-            client.password = password;
-            client.phone_number = phone_number;
+            let retail = new Retailer();
+            retail.full_name = full_name;
+            retail.email = email;
+            retail.password = password;
+            retail.phone_number = phone_number;
+            retail.business_name = business_name;
+            retail.business_description = business_description
 
-            await connection.manager.save(client).then((client) => {
-                res.status(200).send({"User added ": client.full_name})
+            await connection.manager.save(retail).then((retail) => {
+                res.status(200).send({"User added ": retail.full_name})
             });
         })
         .catch((error) => {
@@ -43,11 +45,10 @@ const getSignUp = async (req, res) => {
                 res.status(400).send({"Error": "Account with that email already exists"});
             }else{
                 res.status(408).send({"Error": "error"});
+                console.log(error);
             }
     });
     }catch (error) {
         res.status(400).send(error);
 }
 }
-export default getSignUp
-

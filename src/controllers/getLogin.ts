@@ -5,7 +5,7 @@ import { Client } from "../entity/Client";
 
 export const logIn = (req, res) => {
     const { email, password }: { email:string; password: string } = req.body;
-    console.log(email, password);
+    // console.log(email, password);
     if(!(email && password)){
         res.status(400).send({Error: "Incomplete details"});
     }
