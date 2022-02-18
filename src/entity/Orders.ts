@@ -22,6 +22,6 @@ export class Orders extends BaseEntity {
     customer_name: string;
 
     @Column()
-    customer_number: string;
+    customer_number: number;
 
 }

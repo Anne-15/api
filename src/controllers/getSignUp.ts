@@ -1,9 +1,7 @@
-import bcrypt from "bcrypt";
-import { response } from "express";
 import dbconnection from "..";
 import { Client } from "../entity/Client";
-import { Retailer } from "../entity/Retailer";
-
+// let secretPassword = string;
+import bcrypt from "bcrypt";
 
 const getSignUp = async (req, res) => {
     //get data from request body
@@ -24,6 +22,11 @@ const getSignUp = async (req, res) => {
         }
         //strong password checking
         //encrypt password
+        // bcrypt
+        // .hash(password, 10)
+        // .then((hash) => (secretPassword = hash))
+        // .catch((error) => console.log(error))
+
         //adding a user
         dbconnection
         .then(async(connection) => {

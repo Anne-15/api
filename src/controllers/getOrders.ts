@@ -15,7 +15,7 @@ const getOrders = async (req, res) => {
         description: string;
         price: number;
         customer_name: string;
-        customer_number: string;
+        customer_number: number;
     } = req.body
     try {
         if(!(item && description && price && customer_name && customer_number)){
@@ -33,8 +33,15 @@ const getOrders = async (req, res) => {
 
             await connection.manager.save(order).then((order) => {
                 res.status(200).send({"Order added ": order.item});
-                console.log(order.item);
+                // console.log(order.item);
             });
+        })
+        .catch((error) => {
+            if(error.code == "23505"){
+                res.status(400).send({"Error": "Order with the same name added"});
+            }else{
+                res.status(402).send({"Error": "error"});
+            }
         })
     } catch (error) {
         res.status(400).send(error)
