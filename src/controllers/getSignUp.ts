@@ -1,6 +1,6 @@
 import dbconnection from "..";
 import { Client } from "../entity/Client";
-// let secretPassword = string;
+// let secretPassword: string;
 import bcrypt from "bcrypt";
 
 const getSignUp = async (req, res) => {

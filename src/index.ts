@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
 app.use(createUser);
 
 //error async
-const errorHandler = require('./middleware/error-handler');
-const notFound = require('./middleware/notFound');
+// const errorHandler = require('./middleware/error-handler');
+// const notFound = require('./middleware/notFound');
 //routes
 // app.use(errorHandler);
 // app.use(notFound);
@@ -30,5 +30,5 @@ const notFound = require('./middleware/notFound');
 const httpServer = http.createServer(app);
 const PORT = 6060;
 httpServer.listen(PORT, () => 
-    console.log(`The server is running on port ${PORT}`)
+    console.log(`The server is running on port http://localhost:${PORT}`)
 )

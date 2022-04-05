@@ -5,6 +5,7 @@ import getOrders from "../controllers/getOrders";
 import getRetail from "../controllers/getRetail";
 import getSignUp from "../controllers/getSignUp";
 import getUsers from "../controllers/getUsers";
+import MyOrders from "../controllers/MyOrders";
 import { signUpRetail } from "../controllers/signUpRetail";
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router.post('/login', logIn);
 router.post('/retail/login', logInRel);
 router.post('/myOrders', getOrders);
+router.get('/orders/reports', MyOrders);
 router.get('/users', getUsers);
 router.post('/retailers', getRetail);
 router.post('/signup', getSignUp);
