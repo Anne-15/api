@@ -5,6 +5,7 @@ export class Delivery extends BaseEntity{
     
     @PrimaryGeneratedColumn()
     id: number;
+    
     @Column()
     first_name: string;
 

@@ -2,7 +2,7 @@ import http from "http";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express = require("express");
-import { createUser } from "./routes/getClient";
+import { backend } from "./routes/getClient";
 
 const app = express();
 //connection to the database
@@ -17,7 +17,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send("Automated package delivery app!!");
 })
-app.use(createUser);
+app.use(backend);
 
 //error async
 // const errorHandler = require('./middleware/error-handler');

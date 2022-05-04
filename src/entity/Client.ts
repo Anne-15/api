@@ -21,7 +21,4 @@ export class Client extends BaseEntity{
     @Column()
     phone_number: number
 
-    @OneToOne(() => Profile)
-    @JoinColumn()
-    profile: Profile
 }

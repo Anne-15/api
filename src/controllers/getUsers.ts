@@ -2,6 +2,7 @@ import { Client } from "../entity/Client";
 import dbconnection from "../index";
 
 const getUsers = async (req, res) => {
+    // console.log(req.body);
         //get users email
         // const decodeToken = jwt.decode(req.header("x-access-token"),{
         //     complete: true,
@@ -14,7 +15,7 @@ const getUsers = async (req, res) => {
                 .find()
                 .then((client) => {
                     res.send(client);
-                    console.log(client);
+                    // console.log(client);
                 })
                 .catch((error) => {
                     res.status(402).send(error);

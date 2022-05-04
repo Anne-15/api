@@ -5,9 +5,12 @@ export class Orders extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
+
+    @Column()
+    order_number: number;
     
     @Column()
-    item: string;
+    item_name: string;
 
     @Column()
     description: string;
@@ -20,5 +23,8 @@ export class Orders extends BaseEntity {
 
     @Column()
     customer_number: number;
+
+    @Column()
+    address: string;
 
 }
