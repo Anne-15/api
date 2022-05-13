@@ -25,7 +25,7 @@ export const signUpRetail = (req, res) => {
     business_description: string;
   } = req.body;
 
-  console.log(req.body)
+  // console.log(req.body)
 
   //temporary id
     const id = new Date().getTime();

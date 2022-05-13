@@ -14,22 +14,20 @@ const getSignUp = async (req, res) => {
   };
   //get data from request body
   const {
-    id,
     full_name,
     email,
     password,
     phone_number,
   }: {
-    id: number;
     full_name: string;
     email: string;
     password: string;
-    phone_number: number;
+    phone_number: string;
   } = req.body;
     // console.log(req.body);
 
   //temporary id
-
+  const id = new Date().getTime();
   try {
     if (!(full_name && email)) {
       throw { Error: "Incomplete details" };
@@ -61,7 +59,6 @@ const getSignUp = async (req, res) => {
     dbconnection
       .then(async (connection) => {
         let client = new Client();
-        client.id = id;
         client.full_name = full_name;
         client.email = email;
         client.password = secretPassword;

@@ -28,9 +28,6 @@ export class Rider extends BaseEntity {
   @Column()
   password: string;
 
-  @Column()
-  description: string;
-
   @OneToOne(() => Orders, (orders) => orders.ride)
   orders: Orders;
 }

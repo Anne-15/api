@@ -45,8 +45,11 @@ const getOrders = async (req, res) => {
         let clientRepository = connection.getRepository(Client);
         let rideReppository = connection.getRepository(Rider);
 
-        let getClient = await clientRepository.findOne({ email: req.body.email });
-        let getRider = await rideReppository.findOne({ email: req.body.email });
+        let getClient = await clientRepository.findOne({ email: req.body.clientId });
+        let getRider = await rideReppository.findOne({ email: req.body.rideId });
+
+        // console.log(getClient);
+        // console.log(getRider);
 
         let order = new Orders();
         order.item_name = itemName;
@@ -58,7 +61,7 @@ const getOrders = async (req, res) => {
 
         await connection.manager.save(order).then((order) => {
           res.status(200).send({ "Order added ": order.item_name });
-          console.log(order.item_name);
+          // console.log(order.item_name);
         });
       })
       .catch((error) => {
