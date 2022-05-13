@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm";
 
 @Entity('retailer')
 export class Retailer extends BaseEntity {
@@ -24,6 +24,10 @@ export class Retailer extends BaseEntity {
     business_name: string;
 
     @Column()
-    business_description: string;
+    handle: string;
+
+    @Column()
+    description: string;
+
 
 }

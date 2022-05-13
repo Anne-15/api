@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express = require("express");
 import { backend } from "./routes/getClient";
+const cors = require('cors');
 
 const app = express();
 //connection to the database
@@ -12,6 +13,7 @@ console.log("Connected!!");
 
 //middleware
 app.use(express.json());
+app.use(cors({ origin: "*" }));
 
 //routes
 app.get('/', (req, res) => {

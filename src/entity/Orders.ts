@@ -1,13 +1,13 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, OneToOne, JoinColumn} from "typeorm";
+import {Entity, Column, BaseEntity, OneToMany, OneToOne, JoinColumn, ManyToOne, PrimaryColumn} from "typeorm";
+import { Client } from "./Client";
+import { Retailer } from "./Retailer";
+import { Rider } from "./Rider";
 
 @Entity('orders')
 export class Orders extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id: number;
-
-    @Column()
-    order_number: number;
     
     @Column()
     item_name: string;
@@ -19,12 +19,13 @@ export class Orders extends BaseEntity {
     price: number;
 
     @Column()
-    customer_name: string;
-
-    @Column()
-    customer_number: number;
-
-    @Column()
     address: string;
 
+    @OneToOne(() => Client)
+    @JoinColumn()
+    client: Client
+
+    @OneToOne(() => Rider)
+    @JoinColumn()
+    ride: Rider
 }

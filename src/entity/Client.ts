@@ -1,12 +1,11 @@
-import { JoinColumn, JoinTable, OneToOne } from "typeorm";
-import { Profile } from "./Profile";
+import { JoinColumn, JoinTable, OneToOne, PrimaryColumn } from "typeorm";
 
 const {Entity, BaseEntity, Column, PrimaryGeneratedColumn} = require ("typeorm");
 
 @Entity('client')
 export class Client extends BaseEntity{
     
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id: number
     
     @Column()

@@ -20,7 +20,7 @@ export const logIn = (req, res) => {
 
       //find user in the database
       await userRepository
-        .find({ email: email })
+        .findOne({ email: req.body.email })
         .then((user) => {
 
           //password checking
@@ -33,7 +33,7 @@ export const logIn = (req, res) => {
                 process.env.JWT_SECRET,
                 { expiresIn: "1d" }
               );
-              
+
               //token returned both as a header and response body
               res.setHeader("x-access-token", token);
               res.json(token);
