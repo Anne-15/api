@@ -25,30 +25,36 @@ const getOrders = async (req, res) => {
     }
 
     //get the client table
-    const result = dbconnection.then(async (connection) => {
-      let clientresult = connection.getRepository(Client);
-      await clientresult.findOne({
-        where: { email: Client.email },
-      });
-    });
+    // const result = dbconnection.then(async (connection) => {
+    //   let clientresult = connection.getRepository(Client);
+    //   await clientresult.findOne({
+    //     where: { email: Client.email },
+    //   });
+    //   console.log(clientresult);
+    // });
 
     //getting the rider's table
-    const rides = dbconnection.then(async (connection) => {
-      let getRiders = connection.getRepository(Rider);
-      await getRiders.findOne();
-    });
-    
+    // const rides = dbconnection.then(async (connection) => {
+    //   let getRiders = connection.getRepository(Rider);
+    //   await getRiders.findOne();
+    // });
+
     //adding an order to the database
     dbconnection
       .then(async (connection) => {
+        let clientRepository = connection.getRepository(Client);
+        let rideReppository = connection.getRepository(Rider);
+
+        let getClient = await clientRepository.findOne({ email: req.body.email });
+        let getRider = await rideReppository.findOne({ email: req.body.email });
 
         let order = new Orders();
         order.item_name = itemName;
         order.description = description;
         order.price = price;
         order.address = address;
-        // order.client = result;
-        // order.rider = rides;
+        order.client = getClient;
+        order.ride = getRider;
 
         await connection.manager.save(order).then((order) => {
           res.status(200).send({ "Order added ": order.item_name });

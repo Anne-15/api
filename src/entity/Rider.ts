@@ -5,12 +5,13 @@ import {
   OneToMany,
   OneToOne,
   PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { Orders } from "./Orders";
 
 @Entity("rider")
 export class Rider extends BaseEntity {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -30,6 +31,6 @@ export class Rider extends BaseEntity {
   @Column()
   description: string;
 
-//   @OneToOne(() => Orders, (orders) => orders.ride)
-//   orders: Orders;
+  @OneToOne(() => Orders, (orders) => orders.ride)
+  orders: Orders;
 }

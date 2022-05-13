@@ -33,7 +33,7 @@ export class Orders extends BaseEntity {
   @JoinColumn()
   client: Client;
 
-  @OneToOne(() => Rider)
+  @OneToOne(() => Rider, (ride) => ride.orders)
   @JoinColumn()
   ride: Rider;
 }
