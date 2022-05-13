@@ -1,7 +1,7 @@
 import dbconnection from "..";
-
-const { Orders } = require("../entity/Orders");
-const { Client } = require("../entity/Client");
+import { Rider } from "../entity/Rider";
+import { Client } from "../entity/Client";
+import { Orders } from "../entity/Orders";
 
 const getOrders = async (req, res) => {
   //get data from request body
@@ -11,44 +11,48 @@ const getOrders = async (req, res) => {
     description,
     price,
     address,
-    clientid,
-    customerName,
-    customerEmail,
-    customerNumber,
   }: {
     itemName: string;
     description: string;
     price: number;
     address: string;
-    clientid: number;
-    customerName: string;
-    customerEmail: string;
-    customerNumber: number;
   } = req.body;
+
+  // console.log(req.body);
   try {
-    if (!(itemName && customerName && customerNumber)) {
+    if (!(itemName && description && address)) {
       throw { Error: "Incomplete details" };
     }
+
+    //get the client table
+    const result = dbconnection.then(async (connection) => {
+      let clientresult = connection.getRepository(Client);
+      await clientresult.findOne({
+        where: { email: Client.email },
+      });
+    });
+
+    //getting the rider's table
+    const rides = dbconnection.then(async (connection) => {
+      let getRiders = connection.getRepository(Rider);
+      await getRiders.findOne();
+    });
+    
     //adding an order to the database
     dbconnection
       .then(async (connection) => {
-        //get the client table
-        let newClient = new Client();
-        newClient.id = clientid;
-        newClient.full_name = customerName;
-        newClient.email = customerEmail;
-        newClient.phone_number = customerNumber;
 
         let order = new Orders();
         order.item_name = itemName;
         order.description = description;
         order.price = price;
         order.address = address;
-        order.client = newClient;
+        // order.client = result;
+        // order.rider = rides;
 
         await connection.manager.save(order).then((order) => {
-          res.status(200).send({ "Order added ": order.item });
-          // console.log(order.item);
+          res.status(200).send({ "Order added ": order.item_name });
+          console.log(order.item_name);
         });
       })
       .catch((error) => {

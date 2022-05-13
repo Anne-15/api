@@ -1,31 +1,39 @@
-import {Entity, Column, BaseEntity, OneToMany, OneToOne, JoinColumn, ManyToOne, PrimaryColumn} from "typeorm";
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  OneToMany,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Client } from "./Client";
-import { Retailer } from "./Retailer";
 import { Rider } from "./Rider";
 
-@Entity('orders')
+@Entity("orders")
 export class Orders extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryColumn()
-    id: number;
-    
-    @Column()
-    item_name: string;
+  @Column()
+  item_name: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @Column()
-    price: number;
+  @Column()
+  price: number;
 
-    @Column()
-    address: string;
+  @Column()
+  address: string;
 
-    @OneToOne(() => Client)
-    @JoinColumn()
-    client: Client
+  @OneToOne(() => Client, (client) => client.orders)
+  @JoinColumn()
+  client: Client;
 
-    @OneToOne(() => Rider)
-    @JoinColumn()
-    ride: Rider
+  @OneToOne(() => Rider)
+  @JoinColumn()
+  ride: Rider;
 }
