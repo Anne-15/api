@@ -3,13 +3,13 @@ import dbconnection from "../index";
 import { Client } from "../entity/Client";
 import bcrypt from "bcrypt";
 
-export const logIn = (req, res) => {
-//   console.log(req.body);
+const logIn = (req, res) => {
   //get user name and password from the database
   const { email, password } = req.body;
   if (!(email && password)) {
     res.status(400).send({ Error: "Incomplete details" });
   }
+
   //temporary id
   const id = new Date().getDate();
 
@@ -51,5 +51,7 @@ export const logIn = (req, res) => {
       res.status(400).send({ Error: "Correction" });
     });
 };
+
+
 
 export default logIn;

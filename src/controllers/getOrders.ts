@@ -24,21 +24,6 @@ const getOrders = async (req, res) => {
       throw { Error: "Incomplete details" };
     }
 
-    //get the client table
-    // const result = dbconnection.then(async (connection) => {
-    //   let clientresult = connection.getRepository(Client);
-    //   await clientresult.findOne({
-    //     where: { email: Client.email },
-    //   });
-    //   console.log(clientresult);
-    // });
-
-    //getting the rider's table
-    // const rides = dbconnection.then(async (connection) => {
-    //   let getRiders = connection.getRepository(Rider);
-    //   await getRiders.findOne();
-    // });
-
     //adding an order to the database
     dbconnection
       .then(async (connection) => {
