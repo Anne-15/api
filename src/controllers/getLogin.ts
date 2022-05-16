@@ -6,12 +6,13 @@ import bcrypt from "bcrypt";
 const logIn = (req, res) => {
   //get user name and password from the database
   const { email, password } = req.body;
+
   if (!(email && password)) {
     res.status(400).send({ Error: "Incomplete details" });
   }
 
   //temporary id
-  const id = new Date().getDate();
+  // const id = new Date().getDate();
 
   //get user from database
   dbconnection
@@ -24,14 +25,14 @@ const logIn = (req, res) => {
         .then((user) => {
 
           //password checking
-          bcrypt.compare(password, user[0].password).then((result) => {
+          bcrypt.compare(password, user.password).then((result) => {
             if (result == true) {
 
               //jwt
               const token = jwt.sign(
-                { full_name: user[0].full_name, email: user[0].email },
+                { full_name: user.full_name, email: user.email },
                 process.env.JWT_SECRET,
-                { expiresIn: "1d" }
+                { expiresIn: "1hr" }
               );
 
               //token returned both as a header and response body

@@ -75,11 +75,11 @@ const getSignUp = async (req, res) => {
 
         await connection.manager.save(client).then((client) => {
           res.setHeader("x-access-token", token);
-          // res.json({
-          //   email: client.email,
-          //   password: client.password,
-          //   accessToken: token,
-          // });
+          res.json({
+            // email: client.email,
+            // password: client.password,
+            accessToken: token,
+          });
           res.status(200).send({ "User added ": client.full_name });
         });
       })

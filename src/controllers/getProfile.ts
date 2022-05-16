@@ -1,6 +1,5 @@
-const Profile = (req, res) => {
-    const { id } = req.body;
-    
+const getProfile = (res, req) => {
+
 }
 
-export default Profile
+export default getProfile;
