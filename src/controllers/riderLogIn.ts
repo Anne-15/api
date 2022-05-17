@@ -2,8 +2,9 @@ import jwt from "jsonwebtoken";
 import { Rider } from "../entity/Rider";
 import dbconnection from "../index";
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 
-const riderLogIn = (req, res) => {
+const riderLogIn = (req: Request, res: Response) => {
   //get rider email and password
 
   const { email, password } = req.body;

@@ -2,8 +2,9 @@ import dbconnection from "..";
 import { Rider } from "../entity/Rider";
 import { Client } from "../entity/Client";
 import { Orders } from "../entity/Orders";
+import { Request, Response } from "express";
 
-const getOrders = async (req, res) => {
+const getOrders = async (req: Request, res: Response) => {
   //get data from request body
   // console.log(req.body);
   const {

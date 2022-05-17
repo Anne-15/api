@@ -3,9 +3,10 @@ import { Rider } from "../entity/Rider";
 import { passwordStrength } from "check-password-strength";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
 let secretPassword: string;
 
-const getRiders = (req, res) => {
+const getRiders = (req: Request, res: Response) => {
   // res.send("A post request to the database");
   //get data from req body
   console.log(req.body);

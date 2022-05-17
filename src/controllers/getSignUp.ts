@@ -4,9 +4,10 @@ import { Client } from "../entity/Client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Joi from "@hapi/joi";
+import { Request, Response } from "express";
 let secretPassword: string;
 
-const getSignUp = async (req, res) => {
+const getSignUp = async (req: Request, res: Response) => {
   //validation schema
   const schema = {
     full_name: Joi.string().required(),

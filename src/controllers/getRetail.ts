@@ -1,8 +1,9 @@
 // import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
 import { Retailer } from "../entity/Retailer";
 import dbconnection from "../index";
 
-const getRetail = async (req, res) => {
+const getRetail = async (req: Request, res: Response) => {
   //get users email
   // const decodeToken = jwt.decode(req.header("x-access-token"),{
   //     complete: true,

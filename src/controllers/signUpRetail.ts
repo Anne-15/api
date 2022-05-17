@@ -3,9 +3,10 @@ import { Retailer } from "../entity/Retailer";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { passwordStrength } from "check-password-strength";
+import { Request, Response } from "express";
 let secretPassword: string;
 
-export const signUpRetail = (req, res) => {
+export const signUpRetail = (req: Request, res: Response) => {
   //get data from request body
   const {
     full_name,
@@ -28,8 +29,8 @@ export const signUpRetail = (req, res) => {
   // console.log(req.body)
 
   //temporary id
-    const id = new Date().getTime();
-    
+  const id = new Date().getTime();
+
   try {
     if (
       !(
@@ -41,8 +42,8 @@ export const signUpRetail = (req, res) => {
       )
     ) {
       throw { Error: "Incomplete details" };
-      }
-      
+    }
+
     //strong password checking
     const strong_pass = passwordStrength(password);
     if (strong_pass.id == 0 || strong_pass.id == 1) {

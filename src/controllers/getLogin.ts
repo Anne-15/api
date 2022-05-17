@@ -2,8 +2,9 @@ import jwt from "jsonwebtoken";
 import dbconnection from "../index";
 import { Client } from "../entity/Client";
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 
-const logIn = (req, res) => {
+const logIn = (req: Request, res: Response) => {
   //get user name and password from the database
   const { email, password } = req.body;
 

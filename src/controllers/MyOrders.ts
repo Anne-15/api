@@ -1,7 +1,8 @@
+import { Request, Response } from "express";
 import dbconnection from ".."
 import { Orders } from "../entity/Orders"
 
-const MyOrders = (req, res) => {
+const MyOrders = (req: Request, res: Response) => {
     //getting data from the database
     // console.log(req.body);
     try {

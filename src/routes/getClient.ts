@@ -1,5 +1,6 @@
 import express from "express";
 import businessProfile from "../controllers/businessProfile";
+import clientOrders from "../controllers/clientOrders";
 import Delete from "../controllers/Delete";
 import logIn from "../controllers/getLogin";
 import { logInRel } from "../controllers/getLoginRel";
@@ -19,7 +20,7 @@ import { authJwt } from "../middleware/authJWT";
 const router = express.Router();
 
 //login and sign up routes for the different users
-router.get('/users',[authJwt], getUsers);
+router.get('/users', getUsers);
 
 //business info routes 
 router.post("/retail/login", logInRel); //log in
@@ -33,6 +34,7 @@ router.get('/business/profile', [authJwt], businessProfile); //business profile
 router.post("/login", logIn); //log in
 router.post("/signup", getSignUp); //sign up
 router.get('/users/profile', [authJwt], myProfile); //user profile
+router.get('/user/myorder', clientOrders);
 
 //rider info routes
 router.post("/rider/signup", getRiders); //sign up

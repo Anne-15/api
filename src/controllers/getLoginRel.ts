@@ -2,8 +2,9 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt"
 import dbconnection from "../index";
 import { Retailer } from "../entity/Retailer";
+import { Request, Response } from "express";
 
-export const logInRel = (req, res) => {
+export const logInRel = (req: Request, res: Response) => {
     const { email, password }: { email:string; password: string } = req.body;
     // console.log(email, password);
     if(!(email && password)){

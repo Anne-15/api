@@ -1,7 +1,8 @@
+import { Request, Response } from "express";
 import dbconnection from "..";
 import { Rider } from "../entity/Rider";
 
-const rider = (req, res) => {
+const rider = (req: Request, res: Response) => {
     // res.send("A get request from the database");
     //getting data from the database
     try {
