@@ -1,4 +1,5 @@
 import express from "express";
+import allProducts from "../controllers/allProducts";
 import businessProfile from "../controllers/businessProfile";
 import logIn from "../controllers/getLogin";
 import { logInRel } from "../controllers/getLoginRel";
@@ -10,6 +11,8 @@ import getSignUp from "../controllers/getSignUp";
 import getUsers from "../controllers/getUsers";
 import MyOrders from "../controllers/MyOrders";
 import myProfile from "../controllers/myProfile";
+import newProduct from "../controllers/newProduct";
+import oneProduct from "../controllers/oneProduct";
 import riderLogIn from "../controllers/riderLogIn";
 import rider from "../controllers/riders";
 import signUpRetail from "../controllers/signUpRetail";
@@ -23,6 +26,9 @@ router.post('/retailers', [authJwt], getRetail); //find all logged businesses
 router.get("/orders/reports", MyOrders); //find all logged orders
 router.post("/myOrders", [authJwt], getOrders); //creating an order and inserting to the database
 router.get('/business/profile', [authJwt], businessProfile); //business profile
+router.post('/products', newProduct); //adding a product to the database
+router.get('/products/all', allProducts); //get all products in the database
+router.get('/products/one', oneProduct); //get one product in the database
 
 //user info routes
 router.post("/login", logIn); //log in
