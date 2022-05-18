@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, ManyToOne} from "typeorm";
+import { Product } from "./Products";
 
 @Entity('retailer')
 export class Retailer extends BaseEntity {
@@ -28,6 +29,9 @@ export class Retailer extends BaseEntity {
 
     @Column()
     description: string;
+
+    // @OneToMany(() => Product, (product) => product.retailer)
+    // product: Product
 
 
 }

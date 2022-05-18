@@ -62,6 +62,7 @@ export const signUpRetail = (req: Request, res: Response) => {
     //adding a user
     dbconnection
       .then(async (connection) => {
+
         let retail = new Retailer();
         retail.full_name = full_name;
         retail.email = email;

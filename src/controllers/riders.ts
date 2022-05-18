@@ -11,9 +11,7 @@ const rider = (req: Request, res: Response) => {
       .then(async (connection) => {
         let riderInfo = connection.getRepository(Rider);
         await riderInfo
-          .findOne({
-            email: req.body.email,
-          })
+          .find()
           .then((ride) => {
             res.send(ride);
             // console.log(ride);

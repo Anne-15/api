@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Client } from "../entity/Client";
 import dbconnection from "../index";
 
-const getUsers = async (req: Request, res: Response) => {
+const getUsers = (req: Request, res: Response) => {
   // console.log(req.body);
   //get users email
   // const decodeToken = jwt.decode(req.header("x-access-token"),{
