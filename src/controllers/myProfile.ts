@@ -8,7 +8,7 @@ const myProfile = async (req: Request, res: Response) => {
   const decodedToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
     complete: true,
   });
-  console.log(decodedToken);
+  // console.log(decodedToken);
   //connect to the database;
 
   try {
@@ -20,7 +20,7 @@ const myProfile = async (req: Request, res: Response) => {
           .findOne({ email: decodedToken.payload.email })
           .then((client) => {
             res.send(client);
-            console.log(client);
+            // console.log(client);
           })
           .catch((error) => {
             res.status(402).send(error);

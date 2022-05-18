@@ -1,7 +1,5 @@
 import express from "express";
 import businessProfile from "../controllers/businessProfile";
-import clientOrders from "../controllers/clientOrders";
-import Delete from "../controllers/Delete";
 import logIn from "../controllers/getLogin";
 import { logInRel } from "../controllers/getLoginRel";
 import getOrders from "../controllers/getOrders";
@@ -18,10 +16,6 @@ import signUpRetail from "../controllers/signUpRetail";
 import { authJwt } from "../middleware/authJWT";
 
 const router = express.Router();
-
-//login and sign up routes for the different users
-router.get('/users', getUsers);
-
 //business info routes 
 router.post("/retail/login", logInRel); //log in
 router.post("/retail/signup", signUpRetail); //sign up
@@ -34,12 +28,12 @@ router.get('/business/profile', [authJwt], businessProfile); //business profile
 router.post("/login", logIn); //log in
 router.post("/signup", getSignUp); //sign up
 router.get('/users/profile', [authJwt], myProfile); //user profile
-router.get('/user/myorder', clientOrders);
+router.get("/users",[authJwt], getUsers); //get logged user with orders
 
 //rider info routes
 router.post("/rider/signup", getRiders); //sign up
-router.post("/rider/loging", riderLogIn); //log in
-router.get('/rider/info',[authJwt], rider); //get all logged riders to the database
+router.post("/rider/login", riderLogIn); //log in
+router.get('/rider/info',[authJwt], rider); //get logged riders with the orders
 router.get('/riders/profile', [authJwt], getProfile); //rider profile
 
 // router.delete('/delete/:id',[authJwt], Delete);

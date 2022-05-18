@@ -9,7 +9,7 @@ let secretPassword: string;
 const getRiders = (req: Request, res: Response) => {
   // res.send("A post request to the database");
   //get data from req body
-  console.log(req.body);
+  // console.log(req.body);
   const {
     name,
     email,

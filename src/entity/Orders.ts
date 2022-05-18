@@ -29,7 +29,7 @@ export class Orders extends BaseEntity {
   @Column()
   address: string;
 
-  @OneToOne(() => Client, (client) => client.orders, { cascade: true })
+  @OneToOne(() => Client, (client) => client.orders)
   @JoinColumn()
   client: Client;
 
