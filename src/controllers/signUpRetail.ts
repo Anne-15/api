@@ -62,7 +62,6 @@ export const signUpRetail = (req: Request, res: Response) => {
     //adding a user
     dbconnection
       .then(async (connection) => {
-
         let retail = new Retailer();
         retail.full_name = full_name;
         retail.email = email;
@@ -74,13 +73,18 @@ export const signUpRetail = (req: Request, res: Response) => {
 
         //jwt
         const token = await jwt.sign(
-          { id, email: retail.email },
+          { full_name: retail.full_name, email: retail.email },
           process.env.JWT_SECRET,
           { expiresIn: "1d" }
         );
 
         await connection.manager.save(retail).then((retail) => {
           res.setHeader("x-access-token", token);
+          res.json({
+            // email: client.email,
+            // password: client.password,
+            accessToken: token,
+          });
           res.status(200).send({ "User added ": retail.full_name });
         });
       })

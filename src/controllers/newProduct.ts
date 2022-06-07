@@ -1,8 +1,14 @@
 import { Request, Response } from "express";
 import dbconnection from "..";
 import { Product } from "../entity/Products";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 const newProduct = (req: Request, res: Response) => {
+
+  // const decodeToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
+  //   complete: true,
+  // });
+
   //get product from the request body.
   const {
     number,

@@ -5,9 +5,9 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 const myProfile = async (req: Request, res: Response) => {
   // decode token
-  const decodedToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
-    complete: true,
-  });
+  // const decodedToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
+  //   complete: true,
+  // });
   // console.log(decodedToken);
   //connect to the database;
 
@@ -17,7 +17,7 @@ const myProfile = async (req: Request, res: Response) => {
         let userRepository = connection.getRepository(Client);
 
         await userRepository
-          .findOne({ email: decodedToken.payload.email })
+          .findOne({ email: req.body.email })
           .then((client) => {
             res.send(client);
             // console.log(client);

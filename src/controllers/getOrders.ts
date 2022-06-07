@@ -3,9 +3,13 @@ import { Rider } from "../entity/Rider";
 import { Client } from "../entity/Client";
 import { Orders } from "../entity/Orders";
 import { Request, Response } from "express";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 const getOrders = async (req: Request, res: Response) => {
   //get data from request body
+  // const decodeToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
+  //   complete: true,
+  // });
   // console.log(req.body);
   const {
     itemName,
@@ -19,7 +23,7 @@ const getOrders = async (req: Request, res: Response) => {
     address: string;
   } = req.body;
 
-  // console.log(req.body);
+  console.log(req.body);
   try {
     if (!(itemName && description && address)) {
       throw { Error: "Incomplete details" };
@@ -45,9 +49,11 @@ const getOrders = async (req: Request, res: Response) => {
         order.client = getClient;
         order.ride = getRider;
 
+        console.log(order);
+
         await connection.manager.save(order).then((order) => {
           res.status(200).send({ "Order added ": order.item_name });
-          // console.log(order.item_name);
+          console.log(order.item_name);
         });
       })
       .catch((error) => {

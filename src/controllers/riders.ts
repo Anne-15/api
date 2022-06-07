@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
 import dbconnection from "..";
 import { Rider } from "../entity/Rider";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 const rider = (req: Request, res: Response) => {
   // res.send("A get request from the database");
+  // const decodeToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
+  //   complete: true,
+  // });
   //getting data from the database
   try {
     //getting data from the database

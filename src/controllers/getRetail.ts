@@ -2,14 +2,13 @@
 import { Request, Response } from "express";
 import { Retailer } from "../entity/Retailer";
 import dbconnection from "../index";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 const getRetail = async (req: Request, res: Response) => {
   //get users email
-  // const decodeToken = jwt.decode(req.header("x-access-token"),{
-  //     complete: true,
+  // const decodeToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
+  //   complete: true,
   // });
-
-//   console.log(req.body);
 
   try {
     dbconnection
@@ -19,7 +18,7 @@ const getRetail = async (req: Request, res: Response) => {
           .find()
           .then((retail) => {
             res.send(retail);
-            console.log(retail);
+            // console.log(retail);
           })
           .catch((error) => {
             res.status(402).send(error);

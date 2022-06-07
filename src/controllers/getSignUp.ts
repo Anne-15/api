@@ -25,7 +25,7 @@ const getSignUp = async (req: Request, res: Response) => {
     password: string;
     phone_number: string;
   } = req.body;
-    // console.log(req.body);
+  // console.log(req.body);
 
   //temporary id
   const id = new Date().getTime();
@@ -69,7 +69,7 @@ const getSignUp = async (req: Request, res: Response) => {
 
         //jwt
         const token = await jwt.sign(
-          { id, email: client.email },
+          { full_name: client.full_name, email: client.email },
           process.env.JWT_SECRET,
           { expiresIn: "1d" }
         );
@@ -93,12 +93,12 @@ const getSignUp = async (req: Request, res: Response) => {
             .send({ Error: "Account with that email already exists" });
         } else {
           res.status(400).send({ Error: "what's up!!" });
-          console.log(error)
+          console.log(error);
         }
       });
   } catch (error) {
     res.status(400).send(error);
-    console.log(error)
+    console.log(error);
   }
 };
 export default getSignUp;

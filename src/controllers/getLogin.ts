@@ -33,13 +33,12 @@ const logIn = (req: Request, res: Response) => {
               const token = jwt.sign(
                 { full_name: user.full_name, email: user.email },
                 process.env.JWT_SECRET,
-                { expiresIn: "1hr" }
+                { expiresIn: "1d" }
               );
 
               //token returned both as a header and response body
               res.setHeader("x-access-token", token);
               res.json(token);
-              
             } else {
               res.status(400).send("Bad credentials")
               // console.log(error);

@@ -5,10 +5,10 @@ import { Rider } from "../entity/Rider";
 
 const getProfile = async (req: Request, res: Response) => {
   // decode token
-  const decodedToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
-    complete: true,
-  });
-  console.log(decodedToken);
+  // const decodedToken: JwtPayload = jwt.decode(req.header("x-access-token"), {
+  //   complete: true,
+  // });
+  // console.log(decodedToken);
   //connect to the database;
 
   try {
@@ -17,7 +17,7 @@ const getProfile = async (req: Request, res: Response) => {
         let userRepository = connection.getRepository(Rider);
 
         await userRepository
-          .findOne({ email: decodedToken.payload.email })
+          .findOne({ email: req.body.email })
           .then((rider) => {
             res.send(rider);
             console.log(rider);

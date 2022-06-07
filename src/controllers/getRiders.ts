@@ -52,11 +52,11 @@ const getRiders = (req: Request, res: Response) => {
       ride.email = email;
       ride.password = secretPassword;
       ride.phone_number = number;
-    //   console.log(ride);
+      //   console.log(ride);
 
       //jwt
       const token = await jwt.sign(
-        { id, email: ride.email },
+        { name: ride.name, email: ride.email },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
       );
@@ -65,6 +65,11 @@ const getRiders = (req: Request, res: Response) => {
         .save(ride)
         .then((ride) => {
           res.setHeader("x-access-token", token);
+          res.json({
+            // email: client.email,
+            // password: client.password,
+            accessToken: token,
+          });
           res.status(200).send({ "rider added": ride.name });
         })
         .catch((error) => {
